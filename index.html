@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>single-spa</title>
+</head>
+<body>
+  <ul>
+    <a id="go-vue">
+      <li>
+       去看vue
+      </li>
+    </a>
+    <a id="go-react">
+      <li>
+        去看react
+      </li> 
+    </a>
+    <a id="go-">
+      <li>
+        回首页
+      </li> 
+    </a>
+  </ul>
+  <h3 id="homePage">hello, 首页</h3>
+  <div id="vuePage"></div>
+  <div id="reactPage"></div>
+  <script src="/dist/single-spa.config.js"></script>
+</body>
+<script type="text/javascript">
+  const href = 'http://localhost:1522';
+
+  function changeTargetHref(ele) {
+    let str = ele.split('-')[1];
+    const targetEle = document.getElementById(ele);
+    targetEle.href = `${href}/${str}`;
+  }
+
+  window.onload = function() {
+    changeTargetHref('go-vue');
+    changeTargetHref('go-react');
+    changeTargetHref('go-');
+  }
+
+  const isFind = window.location.href.includes('vue') || window.location.href.includes('react');
+  const ele = document.getElementById('homePage');
+  ele.style.display = isFind ? 'none' : 'block';
+  
+  // console.log(555,isFind)
+
+</script>
+</html>
